@@ -7,7 +7,7 @@
 # This is a quick and dirty script there are some error checking
 # IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
 
-# Define the software that would be inbstalled 
+# Define the software that would be installed
 #Need some prep work
 prep_stage=(
     qt5-wayland 
@@ -39,40 +39,42 @@ nvidia_stage=(
 
 #the main packages
 install_stage=(
-    kitty 
-    mako 
-    waybar
-    swww 
-    swaylock-effects 
-    wofi 
-    wlogout 
-    xdg-desktop-portal-hyprland 
-    swappy 
-    grim 
-    slurp 
-    thunar 
-    btop
-    firefox
-    thunderbird
-    mpv
-    pamixer 
-    pavucontrol 
-    brightnessctl 
-    bluez 
+    kitty # terminal https://sw.kovidgoyal.net/kitty/
+    mako # notification system for wayland https://wayland.emersion.fr/mako/ or https://github.com/emersion/mako
+    waybar # wayland bar https://github.com/Alexays/Waybar
+    swww  # animated wallpaper daemon for wayland  https://github.com/Horus645/swww
+    swaylock-effects # lock effects https://github.com/mortie/swaylock-effects
+    wofi # a rofi inspired launcher for wlroots compositors  https://hg.sr.ht/~scoopta/wofi (not actively maintained)
+    wlogout # wayland logout menu https://aur.archlinux.org/packages/wlogout / https://github.com/ArtsyMacaw/wlogout
+    xdg-desktop-portal-hyprland # xdg-desktop-portal for hyprland https://github.com/hyprwm/xdg-desktop-portal-hyprland
+    swappy # Wayland native snapshot and editor tool, https://github.com/jtheoof/swappy
+    grim # Grab images from a Wayland compositor. (screenshots) https://sr.ht/~emersion/grim/ or https://github.com/emersion/grim
+    slurp # Select a region in a Wayland compositor and print it to the standard output https://github.com/emersion/slurp
+    thunar # file manager https://wiki.archlinux.org/title/thunar
+    btop # Resource monitor that shows usage and stats for processor, memory, disks, network and processes https://github.com/aristocratos/btop
+    brave-bin # brave browser
+    mpv # media player https://wiki.archlinux.org/title/mpv
+    pamixer # command-line volume controller https://github.com/cdemoulins/pamixer
+    pavucontrol # volume control https://freedesktop.org/software/pulseaudio/pavucontrol/
+    brightnessctl # read and control device brightness https://man.archlinux.org/man/brightnessctl.1.en or https://github.com/Hummer12007/brightnessctl
+    bluez # bluetooth protocol stack http://www.bluez.org/
     bluez-utils 
-    blueman 
-    network-manager-applet 
-    gvfs 
-    thunar-archive-plugin 
-    file-roller
-    starship 
-    papirus-icon-theme 
-    ttf-jetbrains-mono-nerd 
-    noto-fonts-emoji 
-    lxappearance 
-    xfce4-settings
-    nwg-look-bin
-    sddm
+    blueman # bluetooth manager https://wiki.archlinux.org/title/Blueman
+    network-manager-applet # Applet for managing network connections https://archlinux.org/packages/extra/x86_64/network-manager-applet/
+    gvfs # userspace virtual filesystem implementation (automount USB etc) https://wiki.gnome.org/Projects/gvfs or https://gitlab.gnome.org/GNOME/gvfs/
+    thunar-archive-plugin # create/extract archives in thunar https://docs.xfce.org/xfce/thunar/archive
+    file-roller # An archive manager utility
+    starship # shell prompt configuration https://starship.rs/
+    papirus-icon-theme # icon themes https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
+    ttf-jetbrains-mono-nerd # font
+    noto-fonts-emoji # font
+    lxappearance # theme manager/switcher
+    xfce4-settings #  daemon, manager, and editor to centralize the configuration management of the Xfce system https://docs.xfce.org/xfce/xfce4-settings/start
+    nwg-look-bin # GTK3 settings compatible with wayland https://github.com/nwg-piotr/nwg-look
+    sddm # display manager (GUI that is displayed at the end of the boot process in place of the default shell) https://wiki.archlinux.org/title/SDDM
+    ripgrep # better version of grep https://github.com/BurntSushi/ripgrep
+    fzf # fuzzy finder https://github.com/junegunn/fzf
+    tmux # terminal multiplexer https://github.com/tmux/tmux
 )
 
 for str in ${myArray[@]}; do
@@ -275,15 +277,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     #set the measuring unit
     echo -e "$CNT - Attempring to set mesuring unit..."
-    if locale -a | grep -q ^en_US; then
-        echo -e "$COK - Setting mesuring system to imperial..."
-        ln -sf ~/.config/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
-        sed -i 's/SET_MESU=""/SET_MESU="I"/' ~/.config/HyprV/hyprv.conf
-    else
-        echo -e "$COK - Setting mesuring system to metric..."
-        sed -i 's/SET_MESU=""/SET_MESU="M"/' ~/.config/HyprV/hyprv.conf
-        ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
-    fi
+    echo -e "$COK - Setting mesuring system to metric..."
+    sed -i 's/SET_MESU=""/SET_MESU="M"/' ~/.config/HyprV/hyprv.conf
+    ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
 
     # Setup each appliaction
     # check for existing config folders and backup 
@@ -311,6 +307,8 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     ln -sf ~/.config/HyprV/wlogout/layout ~/.config/wlogout/layout
     ln -sf ~/.config/HyprV/wofi/config ~/.config/wofi/config
     ln -sf ~/.config/HyprV/wofi/style/v4-style-dark.css ~/.config/wofi/style.css
+    ln -sf ~/.config/HyprV/tmux/tmux.conf ~/.config/tmux/tmux.conf
+    ln -sf ~/.config/HyprV/nvim/init.vim ~/.config/nvim/init.vim
 
 
     # add the Nvidia env file to the config (if needed)

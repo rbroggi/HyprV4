@@ -40,9 +40,9 @@ restart_waybar() {
 
     get_ver   
 
-    if [[ $VER == "v4" ]]; then
-        waybar --config ~/.config/HyprV/waybar/conf/v4-config-bottom.jsonc
-    fi
+    #if [[ $VER == "v4" ]]; then
+    #    waybar --config ~/.config/HyprV/waybar/conf/v4-config-bottom.jsonc
+    #fi
 
 }
 
@@ -131,15 +131,15 @@ fi
 get_ver
 
 TOOLTIP='Default Keybinds\n'\
-'SUPER + Q = Start Kitty\n'\
-'SUPER + F4 = Close Window\n'\
+'SUPER + ENTER = Start Kitty\n'\
+'SUPER + Q = Close Window\n'\
 'SUPER + L = Lock Screen\n'\
-'SUPER + M = Logout menu\n'\
-'SUPER + E = File Manager\n'\
+'SUPER + SHIFT + S = Logout menu\n'\
+'SUPER + F = File Manager\n'\
 'SUPER + V = Toggle Float\n'\
-'SUPER + SPACE = App Launcher\n'\
+'SUPER + D = App Launcher\n'\
 'SUPER + S = Screenshot\n'\
 'SUPER + T = Switch HyprV version\n'\
-'ALT + V = Open clipboard manager'
+'SUPER + SHIFT + V = Open clipboard manager'
 
 echo '{"text": "'$VER'", "tooltip": "'$TOOLTIP'"}'
