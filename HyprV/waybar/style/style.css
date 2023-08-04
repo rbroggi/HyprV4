@@ -8,12 +8,12 @@
 }
 
 window#waybar {
-    background: #e7e7ec;
-    color: #2b2b2c;
+    background: rgba(1, 1, 1, 1);
+    color: #f6f7fc;
 }
 
 tooltip {
-    background: #e7e7ec;
+    background: #1e1e2e;
     opacity: 0.8;
     border-radius: 10px;
     border-width: 2px;
@@ -22,27 +22,17 @@ tooltip {
 }
 
 tooltip label{
-    color: #2b2b2c;
+    color: #cdd6f4;
 }
 
 #workspaces button {
     padding: 5px;
-    color: #313244;
+    color: #f6f7fc;
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: #a6adc8;
-}
-
-#workspaces button.focused {
-    color: #a6adc8;
-    background: #eba0ac;
-    border-radius: 10px;
-}
-
-#workspaces button.urgent {
-    color: #11111b;
+    color: #000000;
     background: #a6e3a1;
     border-radius: 10px;
 }
@@ -54,6 +44,10 @@ tooltip label{
 }
 
 #custom-launch_wofi,
+#custom-launch_firefox,
+#custom-launch_thunderbird,
+#custom-launch_thunar,
+#custom-launch_kitty,
 #custom-lock_screen,
 #custom-light_dark,
 #custom-power_btn,
@@ -72,59 +66,43 @@ tooltip label{
 #tray,
 #temperature,
 #workspaces,
+#idle_inhibitor,
 #backlight {
-    background: #e7e7ec;
-    opacity: 0.8;
+    background: rgba(21, 18, 27, 0);
+    opacity: 1;
     padding: 0px 8px;
     margin: 0px 3px;
     border: 0px;
-}
-
-#custom-launch_wofi, #cpu {
-    border-radius: 10px 0px 0px 10px;
-}
-
-#custom-light_dark{
-    border-radius: 0px 10px 10px 0px;
-    margin-right: 10px;
 }
 
 #temperature.critical {
     color: #e92d4d;
 }
 
-
 #workspaces {
     padding-right: 0px;
     padding-left: 5px;
 }
 
-#custom-power_profile, #battery, #temperature {
-    color: #1d7715;
-    border-left: 0px;
-    border-right: 0px;
-}
-
 #window {
     border-radius: 10px;
-    margin-left: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#custom-launch_firefox,
+#custom-launch_thunderbird,
+#custom-launch_thunar,
+#custom-launch_wofi,
+#custom-launch_kitty,
+#custom-weather {
+    margin-left: 0px;
+    border-right: 0px;
+    font-size: 24px;
     margin-right: 20px;
 }
 
-#custom-launch_wofi {
-    color: #407cdd;
-    margin-left: 10px;
-    border-right: 0px;
-}
-
-#pulseaudio {
-    color: #407cdd;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#pulseaudio.microphone {
-    color: #ad6bfd;
-    border-left: 0px;
-    border-right: 0px;
+#custom-launch_firefox,
+#custom-launch_kitty {
+    font-size: 20px;
 }
